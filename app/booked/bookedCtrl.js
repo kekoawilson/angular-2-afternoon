@@ -3,13 +3,13 @@ angular.module('devmtnTravel').controller('bookedCtrl', function( $scope, $state
       $scope.allPackages = res.data;
   
       if ( $stateParams.id ) {
-        $scope.packageIndex = $scope.allPackages.findIndex( function( package ) {
-          return package.id === parseInt( $stateParams.id );
-        }); 
-    
-        if ( $scope.packageIndex !== -1 ) {
-          $scope.package = $scope.allPackages[ $scope.packageIndex ];
-        }
+        $scope.allPackages.map( package => {
+          if (package.id === ($stateParams.id *1) ){
+            $scope.package = package
+          }
+        })
+      } else {
+        console.log('not a match');
       }
     });
   });
